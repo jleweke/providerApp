@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="register.html" />
     <Content Include="memberdata.html" />
     <Content Include="img\reg-logo-200x50.png" />
     <Content Include="index.html" />
