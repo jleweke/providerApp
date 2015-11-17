@@ -58,6 +58,34 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ancientindex.html" />
+    <Content Include="bin\CSFProviderApp.dll" />
+    <Content Include="bin\CSFProviderApp.pdb" />
+    <Content Include="config.xml" />
+    <Content Include="obj\Debug\CSFProviderApp.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\CSFProviderApp.dll" />
+    <Content Include="obj\Debug\CSFProviderApp.pdb" />
+    <Content Include="obj\Release\CSAutoParameterize.parameters.xml" />
+    <Content Include="obj\Release\CSFProviderApp.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\CSFProviderApp.dll" />
+    <Content Include="obj\Release\CSFProviderApp.pdb" />
+    <Content Include="obj\Release\Package\CSFProviderApp.SourceManifest.xml" />
+    <Content Include="obj\Release\Package\PackageTmp\ancientindex.html" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\CSFProviderApp.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\css\bootstrap-theme.css" />
+    <Content Include="obj\Release\Package\PackageTmp\css\bootstrap-theme.min.css" />
+    <Content Include="obj\Release\Package\PackageTmp\css\bootstrap.css" />
+    <Content Include="obj\Release\Package\PackageTmp\css\bootstrap.min.css" />
+    <Content Include="obj\Release\Package\PackageTmp\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="obj\Release\Package\PackageTmp\img\reg-logo-200x50.png" />
+    <Content Include="obj\Release\Package\PackageTmp\index.html" />
+    <Content Include="obj\Release\Package\PackageTmp\js\bootstrap.js" />
+    <Content Include="obj\Release\Package\PackageTmp\js\bootstrap.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\js\jquery-validate.js" />
+    <Content Include="obj\Release\Package\PackageTmp\js\jquery.js" />
+    <Content Include="obj\Release\Package\PackageTmp\js\npm.js" />
+    <Content Include="obj\Release\Package\PackageTmp\memberdata.html" />
+    <Content Include="obj\Release\Package\PackageTmp\register.html" />
+    <Content Include="obj\Release\_WPPLastBuildInfo.txt" />
     <Content Include="register.html" />
     <Content Include="memberdata.html" />
     <Content Include="img\reg-logo-200x50.png" />
@@ -69,12 +97,44 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
-    <Content Include="js\jquery-validate.js" />
+    <Content Include="img\jquery-validate.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\npm.js" />
+    <Content Include="res\icon\Android\drawable-hdpi\ic_launcher.png" />
+    <Content Include="res\icon\Android\drawable-ldpi\ic_launcher.png" />
+    <Content Include="res\icon\Android\drawable-mdpi\ic_launcher.png" />
+    <Content Include="res\icon\Android\drawable-xhdpi\ic_launcher.png" />
+    <Content Include="res\icon\Android\drawable-xxhdpi\ic_launcher.png" />
+    <Content Include="res\icon\Android\drawable-xxxhdpi\ic_launcher.png" />
+    <Content Include="res\icon\Android\playstore-icon.png" />
+    <Content Include="res\icon\ios\AppIcon.appiconset\Icon-40%402x.png" />
+    <Content Include="res\icon\ios\AppIcon.appiconset\Icon-40%403x.png" />
+    <Content Include="res\icon\ios\AppIcon.appiconset\Icon-40.png" />
+    <Content Include="res\icon\ios\AppIcon.appiconset\Icon-60%402x.png" />
+    <Content Include="res\icon\ios\AppIcon.appiconset\Icon-60%403x.png" />
+    <Content Include="res\icon\ios\AppIcon.appiconset\Icon-76%402x.png" />
+    <Content Include="res\icon\ios\AppIcon.appiconset\Icon-76.png" />
+    <Content Include="res\icon\ios\AppIcon.appiconset\Icon-Small%402x.png" />
+    <Content Include="res\icon\ios\AppIcon.appiconset\Icon-Small%403x.png" />
+    <Content Include="res\icon\ios\AppIcon.appiconset\Icon-Small.png" />
+    <Content Include="res\icon\ios\Icon%402x.png" />
+    <Content Include="res\icon\ios\Icon-60.png" />
+    <Content Include="res\icon\ios\Icon-72%402x.png" />
+    <Content Include="res\icon\ios\Icon-72.png" />
+    <Content Include="res\icon\ios\Icon-Small-50%402x.png" />
+    <Content Include="res\icon\ios\Icon-Small-50.png" />
+    <Content Include="res\icon\ios\Icon.png" />
+    <Content Include="res\icon\ios\iTunesArtwork%402x.png" />
+    <Content Include="res\icon\ios\iTunesArtwork.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,13 +144,38 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="obj\Debug\CSFProviderApp.csprojResolveAssemblyReference.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Release\CSAutoParameterize\original\Web.config" />
+    <Content Include="obj\Release\CSAutoParameterize\transformed\Web.config" />
+    <Content Include="obj\Release\CSFProviderApp.csprojResolveAssemblyReference.cache" />
+    <Content Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Release\Package\PackageTmp\css\bootstrap-theme.css.map" />
+    <Content Include="obj\Release\Package\PackageTmp\css\bootstrap.css.map" />
+    <Content Include="obj\Release\Package\PackageTmp\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="obj\Release\Package\PackageTmp\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="obj\Release\Package\PackageTmp\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="obj\Release\Package\PackageTmp\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="obj\Release\Package\PackageTmp\Web.config" />
+    <Content Include="obj\Release\TransformWebConfig\assist\Web.config" />
+    <Content Include="obj\Release\TransformWebConfig\original\Web.config" />
+    <Content Include="obj\Release\TransformWebConfig\transformed\Web.config" />
+    <Content Include="bin\CSFProviderApp.dll.config" />
     <None Include="Properties\PublishProfiles\csfapitest.pubxml" />
+    <Content Include="res\icon\ios\AppIcon.appiconset\Contents.json" />
+    <Content Include="res\icon\ios\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ico\" />
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Release\ProfileTransformWebConfig\transformed\" />
+    <Folder Include="obj\Release\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

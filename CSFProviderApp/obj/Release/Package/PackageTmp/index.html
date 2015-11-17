@@ -9,7 +9,7 @@
 </head>
 <body>
     <center>
-        <img src="img/reg-logo-200x50.png" >
+        <img src="https://myteamcare.org/img/reg-logo-200x50.png" >
         <h2>Provider App</h2>
     </center>
 <div class="container">
@@ -201,28 +201,28 @@
                             "action": 'authenticate',
                             "Content-type": "application/x-www-form-urlencoded",
                         },
-                        success: function (message) {
+                        success: function (data) {
                             //check to see if it's valid JSON
                             //try to parse the JSON
-                            //try {
-                            //    var message = JSON.parse(data);
-                            //    console.log(message);
-                            //}
-                            //catch (err) {
-                            //    alert("Contact CSF Administrator." + data);
-                            //}
+                            try {
+                                var message = JSON.parse(data);
+                                console.log(message);
+                            }
+                            catch (err) {
+                                alert("Contact CSF Administrator." + data);
+                            }
 
                             //deserialize data
                             //var message = JSON.parse(data);
                             ////if success exists then redirect
-                            if (message.Success) {
-                             window.location = 'memberdata.html';
-                            }
+                            //if (message.Success) {
+                            //    window.location = 'memberdata.html';
+                            //}
                            
                             ////else display value error
-                            else {
-                                alert(message.Error);
-                            }
+                            //else {
+                            //    alert(message.Error);
+                            //}
                             console.log(data);
                             //window.location = 'memberdata.html';
                         },
@@ -234,37 +234,13 @@
         });
     </script>
     <script>
-        jQuery.validator.addMethod("uppercase", function (value, element) {
-            // allow any non-whitespace characters as the host part
-            return this.optional(element) || /[A-Z]/.test(value);
-        }, 'Please enter at least 1 uppercase letter.');
-
-        jQuery.validator.addMethod("lowercase", function (value, element) {
-            // allow any non-whitespace characters as the host part
-            return this.optional(element) || /[a-z]/.test(value);
-        }, 'Please enter at least 1 lowercase letter.');
-
-        jQuery.validator.addMethod("taxid", function (value, element) {
-            // allow any non-whitespace characters as the host part
-            return this.optional(element) || /^[0-9-]*$/.test(value);
-        }, 'Please enter only numbers and dashes only.');
-
-        jQuery.validator.addMethod("number", function (value, element) {
-            // allow any non-whitespace characters as the host part
-            return this.optional(element) || /[0-9]/.test(value);
-        }, 'Please enter at least 1 number.');
-
         // When the document is ready
         $(document).ready(function () {
             //validation rules
             $("#register-form").validate({
                 rules: {
                     "Username": {
-                        required: true,
-                        rangelength: [8, 30],
-                        uppercase: true,
-                        lowercase: true,
-                        number: true
+                        required: true
 
                     },
                     "Password": {
@@ -272,8 +248,7 @@
                     }
                     ,
                     "TaxId": {
-                        required: true,
-                        taxid: true
+                        required: true
                     }
                     ,
                     "FirstName": {
@@ -285,8 +260,7 @@
                     }
                     ,
                     "Email": {
-                        required: true,
-                        email: true
+                        required: true
                     }
                     ,
                     "Question1": {
