@@ -1,11 +1,13 @@
 <html>
 <head>
-<title>Login || MyTeamCareMobile - Provider</title>
-<link href="css/bootstrap.css" rel="stylesheet">
+    <title>Login || MyTeamCareMobile - Provider</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<script src="http://malsup.github.com/jquery.form.js"></script>
-<script src="phonegap.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script src="js/jquery-validate.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="phonegap.js"></script>
+    <script src="js/main.js"></script>
 
 </head>
 <body>
@@ -173,170 +175,28 @@
 			</div>
 		</div>
 	</div>
-    <script src="js/bootstrap.js"></script>
-
-    <script src="js/jquery-validate.js"></script>
-
-
-    <script>
-        // When the document is ready
-        $(document).ready(function () {
-            //validation rules
-            $("#login-form").validate({
-                rules: {
-                    "Username": {
-                        required: true
-
-                    },
-                    "Password": {
-                        required: true
-                    }
-                },
-                //perform an AJAX post to API
-                submitHandler: function (form) {
-                    $.ajax({
-                        type: "POST",
-                        url: "https://myteamcare.org/ics.ashx",
-                        data: $(form).serialize(),
-                        headers: {
-                            "action": 'authenticate',
-                            "Content-type": "application/x-www-form-urlencoded",
-                        },
-                        success: function (message) {
-                            //check to see if it's valid JSON
-                            //try to parse the JSON
-                            //try {
-                            //    var message = JSON.parse(data);
-                            //    console.log(message);
-                            //}
-                            //catch (err) {
-                            //    alert("Contact CSF Administrator." + data);
-                            //}
-
-                            //deserialize data
-                            //var message = JSON.parse(data);
-                            ////if success exists then redirect
-                            if (message.Success) {
-                             window.location = 'memberdata.html';
-                            }
-
-                            ////else display value error
-                            else {
-                                alert(message.Error);
-                            }
-                            console.log(data);
-                            //window.location = 'memberdata.html';
-                        },
-                        error: function () { alert("There was an error communicating with the server.  Please try again")}
-                    });
-                    return false; // required to block normal submit since you used ajax
-                }
-            });
-        });
-    </script>
-    <script>
-        jQuery.validator.addMethod("uppercase", function (value, element) {
-            // allow any non-whitespace characters as the host part
-            return this.optional(element) || /[A-Z]/.test(value);
-        }, 'Please enter at least 1 uppercase letter.');
-
-        jQuery.validator.addMethod("lowercase", function (value, element) {
-            // allow any non-whitespace characters as the host part
-            return this.optional(element) || /[a-z]/.test(value);
-        }, 'Please enter at least 1 lowercase letter.');
-
-        jQuery.validator.addMethod("taxid", function (value, element) {
-            // allow any non-whitespace characters as the host part
-            return this.optional(element) || /^[0-9-]*$/.test(value);
-        }, 'Please enter only numbers and dashes only.');
-
-        jQuery.validator.addMethod("number", function (value, element) {
-            // allow any non-whitespace characters as the host part
-            return this.optional(element) || /[0-9]/.test(value);
-        }, 'Please enter at least 1 number.');
-
-        // When the document is ready
-        $(document).ready(function () {
-            //validation rules
-            $("#register-form").validate({
-                rules: {
-                    "Username": {
-                        required: true,
-                        rangelength: [8, 30],
-                        uppercase: true,
-                        lowercase: true,
-                        number: true
-
-                    },
-                    "Password": {
-                        required: true
-                    }
-                    ,
-                    "TaxId": {
-                        required: true,
-                        taxid: true
-                    }
-                    ,
-                    "FirstName": {
-                        required: true
-                    }
-                    ,
-                    "LastName": {
-                        required: true
-                    }
-                    ,
-                    "Email": {
-                        required: true,
-                        email: true
-                    }
-                    ,
-                    "Question1": {
-                        required: true
-                    }
-                    ,
-                    "Answer1": {
-                        required: true
-                    }
-                    ,
-                    "Question2": {
-                        required: true
-                    }
-                    ,
-                    "Answer2": {
-                        required: true
-                    }
-                    ,
-                    "Question3": {
-                        required: true
-                    }
-                    ,
-                    "Answer3": {
-                        required: true
-                    }
-                },
-                //perform an AJAX post to API
-                submitHandler: function (form) {
-                    jQuery(form).ajaxSubmit({
-                        type: "POST",
-                        url: "https://myteamcare.org/ics.ashx",
-                        data: $(this).serialize(),
-                        headers: {
-                            "action": 'register',
-                            "Content-type": "application/x-www-form-urlencoded",
-                        },
-                        success: function (data) {
-                            console.log(data);
-                            alert("Registration successful. Check email for next steps");
-                            window.location = 'memberdata.html';
-                        },
-                        error: function () { alert("There was an error") }
-                    });
-
-                }
-            });
-        });
-    </script>
-
  </body>
+
+<script>
+jQuery.validator.addMethod("uppercase", function (value, element) {
+  // allow any non-whitespace characters as the host part
+  return this.optional(element) || /[A-Z]/.test(value);
+}, 'Please enter at least 1 uppercase letter.');
+
+jQuery.validator.addMethod("lowercase", function (value, element) {
+  // allow any non-whitespace characters as the host part
+  return this.optional(element) || /[a-z]/.test(value);
+}, 'Please enter at least 1 lowercase letter.');
+
+jQuery.validator.addMethod("taxid", function (value, element) {
+  // allow any non-whitespace characters as the host part
+  return this.optional(element) || /^[0-9-]*$/.test(value);
+}, 'Please enter only numbers and dashes only.');
+
+jQuery.validator.addMethod("number", function (value, element) {
+  // allow any non-whitespace characters as the host part
+  return this.optional(element) || /[0-9]/.test(value);
+}, 'Please enter at least 1 number.');
+</script>
 
 </html>
