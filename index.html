@@ -1,10 +1,11 @@
 <html>
-<head> 
+<head>
 <title>Login || MyTeamCareMobile - Provider</title>
 <link href="css/bootstrap.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script src="http://malsup.github.com/jquery.form.js"></script>
+<script src="phonegap.js"></script>
 
 </head>
 <body>
@@ -218,7 +219,7 @@
                             if (message.Success) {
                              window.location = 'memberdata.html';
                             }
-                           
+
                             ////else display value error
                             else {
                                 alert(message.Error);
