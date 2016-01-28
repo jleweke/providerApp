@@ -1,6 +1,0 @@
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\CSFProviderApp\CSFProviderApp\bin\CSFProviderApp.dll.config
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\CSFProviderApp\CSFProviderApp\bin\CSFProviderApp.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\CSFProviderApp\CSFProviderApp\bin\CSFProviderApp.pdb
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\CSFProviderApp\CSFProviderApp\obj\Release\CSFProviderApp.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\CSFProviderApp\CSFProviderApp\obj\Release\CSFProviderApp.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\CSFProviderApp\CSFProviderApp\obj\Release\CSFProviderApp.pdb
