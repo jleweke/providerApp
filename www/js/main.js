@@ -42,6 +42,8 @@ function loginForm(){
                   ////if success exists then redirect
                   if (message.Success) {
                    window.location = 'memberdata.html';
+                    console.log(data);
+                    console.log(message);
                   }
 
                   ////else display value error
