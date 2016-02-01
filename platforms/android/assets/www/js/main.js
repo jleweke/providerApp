@@ -70,7 +70,7 @@ function loginForm(){
                   //var message = JSON.parse(data);
                   ////if success exists then redirect
                   if (message.Success) {
-                   window.location = 'memberdata.html';
+                   window.location = './www/memberdata.html';
                     console.log(message);
                   }
 
