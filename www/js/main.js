@@ -32,12 +32,6 @@ var app = {
     }
 };
 
-// // When the document is ready
-// $(document).ready(function () {
-//   loginForm();
-//   registerForm();
-// });
-
 
 function loginForm(){
     //validation rules
