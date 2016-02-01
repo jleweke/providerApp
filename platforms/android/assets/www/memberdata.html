@@ -3,15 +3,44 @@
 <head>
     <title>Provider Welcome</title>
     <link href="css/bootstrap.css" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script src="js/jquery-validate.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <body>
-    <center>
-        <img src="https://myteamcare.org/img/reg-logo-200x50.png">
-        <h2>Provider App</h2>
-        <hr />
-        <button class="btn-group-sm btn-success">My Dashboard</button>
-        <button class="btn-group-sm btn-success">Search Claims</button>
-    </center>
+  <center>
+    <img src="https://myteamcare.org/img/reg-logo-200x50.png">
+    <hr />
+
+  <nav class="navbar navbar-default" role="navigation">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#member-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">My Dashboard</a>
+    </div>
+
+    <div id="member-nav" class="collapse navbar-collapse" >
+      <ul class="nav navbar-nav">
+        <li class="active">
+            <a href= "">My Profile</a></li>
+          <li>
+            <a href= "">Eligibility and Benefits</a></li>
+          <li>
+            <a href= "">Filing Information</a></l>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </nav>
+
+  <div class= "container">
+  </div>
+
+  </center>
 </body>
 </html>

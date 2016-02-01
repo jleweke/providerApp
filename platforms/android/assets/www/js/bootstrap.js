@@ -2371,10 +2371,27 @@ $(function() {
     $(this).addClass('active');
     e.preventDefault();
   });
+
   $('#register-form-link').click(function(e) {
     $("#register-form").delay(100).fadeIn(100);
     $("#login-form").fadeOut(100);
     $('#login-form-link').removeClass('active');
+    $(this).addClass('active');
+    e.preventDefault();
+  });
+
+  $('#dashboard-link').click(function(e) {
+    $("#dashboard-div").delay(100).fadeIn(100);
+    $("#claims-div").fadeOut(100);
+    $('#claims-div').removeClass('active');
+    $(this).addClass('active');
+    e.preventDefault();
+  });
+
+  $('#claims-link').click(function(e) {
+    $("#claims-div").delay(100).fadeIn(100);
+    $("#dashboard-div").fadeOut(100);
+    $('#dashboard-div').removeClass('active');
     $(this).addClass('active');
     e.preventDefault();
   });
