@@ -4,6 +4,7 @@ var app = {
         this.bindEvents();
         loginForm();
         registerForm();
+        benefitsForm()
     },
     // Bind Event Listeners
     //
@@ -36,7 +37,8 @@ var app = {
 
 function loginForm(){
     //validation rules
-  $("#login-form").validate({
+
+$("#login-form").validate({
       rules: {
           "Username": {
               required: true
@@ -48,7 +50,6 @@ function loginForm(){
       },
       //perform an AJAX post to API
       submitHandler: function (form) {
-
           var formdata = $(form).serializeArray();
           var currentUser = {};
 
@@ -164,10 +165,6 @@ $("#register-form").validate({
                   console.log(data);
                   alert("Registration successful. Check email for next steps");
                   window.location = 'memberdata.html';
-
-                  var stringCurrentUser = localStorage.currentUser
-                  var currentUser = JSON.parse(stringCurrentUser)
-                  document.getElementById("user-name").innerHTML = currentUser["Username"]
               },
               error: function () { alert("There was an error") }
           });
@@ -176,3 +173,58 @@ $("#register-form").validate({
   });
 };
 
+function benefitsForm(){
+$("#benefits-form").validate({
+      rules: {
+          "Patient Birthdate": {
+              required: true
+
+          },
+          "Patient Member ID": {
+              required: true
+          }
+      },
+      //perform an AJAX post to API
+      submitHandler: function (form, event) {
+        event.preventDefault();
+        var stringCurrentUser = localStorage.currentUser
+        var currentUser = JSON.parse(stringCurrentUser)
+
+        var formData = $(form).serializeArray();
+        var currentUser = {};
+        var formDataWithCurrentUser =
+
+          $(formdata).each(function(index, obj){
+            currentUser[obj.name] = obj.value
+          });
+
+          $.ajax({
+              type: "POST",
+              url: "https://myteamcare.org/ics.ashx",
+              data: formDataWithCurrentUser,
+              headers: {
+                  "action": 'check',
+                  "Content-type": "application/x-www-form-urlencoded",
+              },
+              success: function (message) {
+
+                  if (message.Success) {
+                    console.log(message);
+                    $(".member-data").fadeOut(100);
+                    $("#benefits-result").delay(100).fadeIn(100);
+                    $("#benefits-result").load('./benefitseligibility.html body')
+                    $("#jason").html(message)
+                  }
+
+                  ////else display value error
+                  else {
+                      alert(message.Error);
+                  }
+                  //window.location = 'memberdata.html';
+              },
+              error: function () { alert("There was an error communicating with the server.  Please try again")}
+          });
+          return false; // required to block normal submit since you used ajax
+      }
+  });
+};
