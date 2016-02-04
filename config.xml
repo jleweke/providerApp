@@ -10,7 +10,6 @@
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="true" />
-    <preference name="phonegap-version" value="cli-5.20" />
 
     <!-- Android SECTION -->
         <config-file platform="android" parent="/manifest" mode="merge" >
