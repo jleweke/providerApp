@@ -164,6 +164,10 @@ $("#register-form").validate({
                   console.log(data);
                   alert("Registration successful. Check email for next steps");
                   window.location = 'memberdata.html';
+
+                  var stringCurrentUser = localStorage.currentUser
+                  var currentUser = JSON.parse(stringCurrentUser)
+                  document.getElementById("user-name").innerHTML = currentUser["Username"]
               },
               error: function () { alert("There was an error") }
           });
