@@ -2358,66 +2358,7 @@ if (typeof jQuery === 'undefined') {
 
       Plugin.call($spy, data)
     })
-  })
-
-}(jQuery);
-
-$(function() {
-
-    $('#login-form-link').click(function(e) {
-    $("#login-form").delay(100).fadeIn(100);
-    $("#register-form").fadeOut(100);
-    $('#register-form-link').removeClass('active');
-    $(this).addClass('active');
-    e.preventDefault();
   });
+};
 
-  $('#register-form-link').click(function(e) {
-    $("#register-form").delay(100).fadeIn(100);
-    $("#login-form").fadeOut(100);
-    $('#login-form-link').removeClass('active');
-    $(this).addClass('active');
-    e.preventDefault();
-  });
-
-  $('#dashboard-link').click(function(e) {
-    $("#dashboard-div").delay(100).fadeIn(100);
-    $("#claims-div").fadeOut(100);
-    $('#claims-div').removeClass('active');
-    $(this).addClass('active');
-    e.preventDefault();
-  });
-
-  $('#benefits-form-link').click(function(e) {
-    $(".member-data").fadeOut(100);
-    $("#benefits-form-div").delay(100).fadeIn(100);
-    $('#member-nav li').removeClass('active');
-    $(this).addClass('active');
-    e.preventDefault();
-  });
-
-    $('#profile-link').click(function(e) {
-    $(".member-data").fadeOut(100);
-    $("#profile").delay(100).fadeIn(100);
-    $('#member-nav li').removeClass('active');
-    $(this).addClass('active');
-    e.preventDefault();
-  });
-
-    // something for on overall page load
-
-    // var stringCurrentUser = localStorage.currentUser
-    // var currentUser = JSON.parse(stringCurrentUser)
-    // document.getElementById("user-name").innerHTML = currentUser["Username"]
-
-    $('#filing-link').click(function(e) {
-    $(".member-data").fadeOut(100);
-    $("#filing-info").delay(100).fadeIn(100);
-    $('#member-nav li').removeClass('active');
-    $(this).addClass('active');
-    e.preventDefault();
-  });
-
-
-});
 

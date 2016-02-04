@@ -4,7 +4,9 @@ var app = {
         this.bindEvents();
         loginForm();
         registerForm();
-        benefitsForm()
+        benefitsForm();
+        clickEvents();
+        console.log("loaded app intialize")
     },
     // Bind Event Listeners
     //
@@ -19,7 +21,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-
+        console.log("are we getting here?")
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -33,6 +35,59 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
+function clickEvents(){
+    $('#login-form-link').click(function(e) {
+    $("#login-form").delay(100).fadeIn(100);
+    $("#register-form").fadeOut(100);
+    $('#register-form-link').removeClass('active');
+    $(this).addClass('active');
+    e.preventDefault();
+  });
+
+  $('#register-form-link').click(function(e) {
+    $("#register-form").delay(100).fadeIn(100);
+    $("#login-form").fadeOut(100);
+    $('#login-form-link').removeClass('active');
+    $(this).addClass('active');
+    e.preventDefault();
+  });
+
+
+  $('#benefits-form-link').click(function(e) {
+    $(".member-data").fadeOut(100);
+    $("#benefits-form-div").delay(100).fadeIn(100);
+    $('#member-nav li').removeClass('active');
+    $(this).addClass('active');
+      benefitsForm();
+      "clicked on benefits form"
+    e.preventDefault();
+  });
+
+// $('#benefits-form').click(function(e){
+//   e.preventDefault();
+// });
+    $('#profile-link').click(function(e) {
+    $(".member-data").fadeOut(100);
+    $("#profile").delay(100).fadeIn(100);
+    $('#member-nav li').removeClass('active');
+    $(this).addClass('active');
+    e.preventDefault();
+  });
+
+    // find listener for div, displya current user name
+    // var stringCurrentUser = localStorage.currentUser
+    // var currentUser = JSON.parse(stringCurrentUser)
+    // document.getElementById("user-name").innerHTML = currentUser["Username"]
+
+    $('#filing-link').click(function(e) {
+    $(".member-data").fadeOut(100);
+    $("#filing-info").delay(100).fadeIn(100);
+    $('#member-nav li').removeClass('active');
+    $(this).addClass('active');
+    e.preventDefault();
+  });
+}
 
 
 function loginForm(){
@@ -174,6 +229,7 @@ $("#register-form").validate({
 };
 
 function benefitsForm(){
+console.log("ahahdfdafhkajdhfkjadshfkadshf")
 $("#benefits-form").validate({
       rules: {
           "Patient Birthdate": {
@@ -183,25 +239,27 @@ $("#benefits-form").validate({
           "Patient Member ID": {
               required: true
           }
-      },
+      }
+  });
+  console.log("before submit")
+  $("#benefits-form").submit(function(event){
+    console.log("on submit");
       //perform an AJAX post to API
-      submitHandler: function (form, event) {
-        event.preventDefault();
-        var stringCurrentUser = localStorage.currentUser
-        var currentUser = JSON.parse(stringCurrentUser)
+       event.preventDefault(); //stop redirect
+    if ($("#benefits-form").valid()){
+        console.log("form is valid");
 
-        var formData = $(form).serializeArray();
-        var currentUser = {};
-        var formDataWithCurrentUser =
+        var stringCurrentUser = localStorage.currentUser;
+        var currentUser = JSON.parse(stringCurrentUser);
 
-          $(formdata).each(function(index, obj){
-            currentUser[obj.name] = obj.value
-          });
+        var formData = $("#benefits-form").serializeArray();
+        formData.push({"password": currentUser["Password"]});
+        formData.push({"username": currentUser["Username"]});
 
           $.ajax({
               type: "POST",
               url: "https://myteamcare.org/ics.ashx",
-              data: formDataWithCurrentUser,
+              data: formData,
               headers: {
                   "action": 'check',
                   "Content-type": "application/x-www-form-urlencoded",
@@ -212,8 +270,8 @@ $("#benefits-form").validate({
                     console.log(message);
                     $(".member-data").fadeOut(100);
                     $("#benefits-result").delay(100).fadeIn(100);
-                    $("#benefits-result").load('./benefitseligibility.html body')
-                    $("#jason").html(message)
+                    $("#benefits-result").load('./benefitseligibility.html body');
+                    $("#jason").html(message);
                   }
 
                   ////else display value error
@@ -226,5 +284,7 @@ $("#benefits-form").validate({
           });
           return false; // required to block normal submit since you used ajax
       }
+
   });
+
 };
