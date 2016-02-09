@@ -262,7 +262,7 @@ $("#benefits-form").validate({
           $.ajax({
               type: "POST",
               url: "https://myteamcare.org/ics.ashx",
-              dataType: "json",
+              // dataType: "json",
               data: formDataJSON,
               headers: {
                   "action": 'check',
@@ -271,18 +271,18 @@ $("#benefits-form").validate({
               success: function (message) {
 
                   if (message.Success) {
-                    console.log(message);
+                    console.log("success" + message);
+                     displayBenefits()
                     $(".member-data").fadeOut(100);
                     $("#benefits-result").delay(100).fadeIn(100);
-                    $("#benefits-result").load('./benefitseligibility.html body');
-                  displayBenefits()
                   }
 
                   ////else display value error
                   else {
+                    console.log("failure")
                       alert(message.Error);
                   }
-                  //window.location = 'memberdata.html';
+
               },
               error: function () { alert("There was an error communicating with the server.  Please try again")}
           });
@@ -315,75 +315,4 @@ $.each(memberDataJSON["PlanDocuments"], function(index, obj){
   };
 })
 
-// Set up "View Results in PDF" button to download PDF of member data
-var doc = new jsPDF('p', 'pt', 'letter');
-
-var specialElementHandlers = {
-    '#editor': function(element, renderer){
-        return true;
-    }
-};
-
-doc.fromHTML($('body').get(0), 15, 15, {
-    'width': 170,
-    'elementHandlers': specialElementHandlers
-        });
-
-var pdfOutput = doc.output();
-            console.log(">>>"+pdfOutput );
-            // doc.save("doctitle");
-            // save failing  in source code "Uncaught TypeError: Cannot read property 'toFixed' of undefined" line 397
 }
-
-
-// html2canvas($("#pdf-area"), {
-//     onrendered: function (canvas) {
-//         $("#pdf-canvas").append(canvas);
-//         $("#pdf-canvas canvas").css("padding", "20px");
-//     }
-// });
-
-// var options = {
-//     pagesplit: true
-// };
-
-// function download(doctitle) {
-//     pdf.addHTML($("#pdf-area")[0], options, function () {
-//         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-//             pdf.output('dataurlnewwindow');
-//         } else {
-//             pdf.save(doctitle);
-//         }
-//     });
-// }
-
-//NEXT SAVE IT TO THE DEVICE'S LOCAL FILE SYSTEM
-// console.log("file system...");
-// window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-
-//    console.log(fileSystem.name);
-//    console.log(fileSystem.root.name);
-//    console.log(fileSystem.root.fullPath);
-
-//    fileSystem.root.getFile("test.pdf", {create: true}, function(entry) {
-//       var fileEntry = entry;
-//       console.log(entry);
-
-//       entry.createWriter(function(writer) {
-//          writer.onwrite = function(evt) {
-//          console.log("write success");
-//       };
-
-//       console.log("writing to file");
-//          writer.write( pdfOutput );
-//       }, function(error) {
-//          console.log(error);
-//       });
-
-//    }, function(error){
-//       console.log(error);
-//    });
-// },
-// function(event){
-//  console.log( evt.target.error.code );
-

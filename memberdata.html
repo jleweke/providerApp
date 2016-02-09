@@ -44,13 +44,15 @@
     <div class= "member-data" id= "profile">
       <h1> Profile Page <span id= "user-name"></span> </h1>
     </div>
-    <div class= "member-data" id= "benefits-form-div" style="display: none;">
+    <div class= "member-data panel-body col-lg-12" id= "benefits-form-div" style="display: none;">
       <form id="benefits-form">
           <div class="form-group">
-              <input type="date" class="form-control" id="Patient Birthdate" name="Birthdate" placeholder="Patient Birthdate" required>
+            <label for="patient-birthdate" class= "pull-left">Patient Birthdate</label>
+              <input type="date" class="form-control" id="patient-birthdate" name="Birthdate" placeholder="Patient Birthdate" required>
           </div>
           <div class="form-group">
-              <input type="number" class="form-control" id="Patient Member ID" name="Umissn" placeholder="Patient Member ID" required>
+              <label for="patient-id" class= "pull-left">Patient Member ID</label>
+              <input type="number" class="form-control" id="patient-id" name="Umissn" placeholder="Nine Digit ID Number" required>
           </div>
            <div class="form-group">
 
@@ -63,6 +65,164 @@
       </form>
     </div>
       <div class= "member-data" id= "benefits-result" style="display: none;">
+    <h2>Search Results</h2>
+<h3> Patient Information </h3>
+<div>
+  <table id="participantinfo" class="table table-bordered">
+            <tbody>
+               <tr>
+                  <td class="MemberEligibilityHeader" style="width: 35%;">
+                     Patient Name
+                  </td>
+                  <td id= "PatientName">
+                  </td>
+               </tr>
+               <tr>
+                  <td class="MemberEligibilityHeader">
+                     Patient Birth Date
+                  </td>
+                  <td id ="PatientBirthDate">
+                  </td>
+               </tr>
+               <tr>
+                  <td class="MemberEligibilityHeader">
+                     Subscriber Name
+                  </td>
+                  <td id= "SubscriberName">
+                  </td>
+               </tr>
+               <tr>
+                  <td class="MemberEligibilityHeader">
+                     Relationship to Subscriber
+                  </td>
+                  <td id= "RelationToSubscriber">
+
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+</div>
+</hr>
+<h3> Plan Information </h3>
+<div>
+  <table id="medicalPlanInfo" class="table table-bordered">
+            <tbody>
+               <tr>
+                  <td class="MemberEligibilityHeader">
+                     Eligiblily Status *
+                  </td>
+                  <td id="EligibiltyStatus">
+
+                  </td>
+               </tr>
+               <tr>
+                  <td class="MemberEligibilityHeader" style="width: 35%;">
+                     Plan
+                  </td>
+                  <td id="PlanCode">
+                  </td>
+               </tr>
+               <tr>
+                  <td class="MemberEligibilityHeader" style="vertical-align: text-top">
+                     Plan Document
+                  </td>
+                  <td>
+                     <div id="ContentPlaceHolderDefault_insideContent_MemberEligibility_9_sbcLinkDiv">
+
+                         <a id= "DentalSummary" href="" target="_blank"><i class="fa fa-file-pdf-o"></i> Dental Summary</a><br>
+
+                         <a id= "PlanBenefitProfile"href="" target="_blank"><i class="fa fa-file-pdf-o"></i> Plan Benefit Profile</a><br>
+
+                         <a id="LastYearsPlanBenefitProfile" href="" target="_blank"><i class="fa fa-file-pdf-o"></i> Last Year's Plan Benefit Profile</a><br>
+                        </div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="MemberEligibilityHeader">
+                     Co-Pay Amount
+                  </td>
+                  <td id="TeamCare">
+
+                  </td>
+               </tr>
+               <tr>
+                  <td class="MemberEligibilityHeader">
+                     Coverage is
+                  </td>
+                  <td id="Coverage">
+                  </td>
+               </tr>
+               <tr>
+                  <td class="MemberEligibilityHeader">
+                     PPO Network
+                  </td>
+                  <td id="PpoNetwork">
+                  </td>
+               </tr>
+               <tr>
+                  <td class="MemberEligibilityHeader">
+                     Pre-Certification Number
+                  </td>
+                  <td id="PreCertNumber">
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+    </div>
+
+</hr>
+<h3> Benefits and Accumulators </h3>
+    <div>
+            <table id="Table2" class="table table-condensed table-bordered">
+               <tbody><tr>
+                  <td width="50%" class="MemberEligibilityHeader">
+                     Benefit
+                  </td>
+                  <td class="MemberEligibilityHeader">
+                     Limit
+                  </td>
+                  <td class="MemberEligibilityHeader">
+                     Amount Accumulated in 2016
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     Annual Medical Deductible (Individual)
+                  </td>
+                  <td id="AnnualMedicalIndividualMax">
+                  </td>
+                  <td id="AnnualMedicalIndividualAccum">
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     Annual Medical Deductible (Family)
+                  </td>
+                  <td id="AnnualMedicalFamilyMax">
+                  </td>
+                  <td id="AnnualMedicalFamilyAccum">
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     Annual Major Medical Out of Pocket Expense Limit (Individual)
+                  </td>
+                  <td id="AnnualMajorMedicalIndividualMax">
+                  </td>
+                  <td id="AnnualMajorMedicalIndividualAccum">
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     Annual Major Medical Out of Pocket Expense Limit (Family)
+                  </td>
+                  <td id="AnnualMajorMedicalFamilyMax">
+                  </td>
+                  <td id ="AnnualMajorMedicalFamilyAccum">
+                  </td>
+               </tr>
+            </tbody></table>
+         </div>
     </div>
     <div class= "member-data" id= "filing-info" style="display: none;">
       <h1> Filing Info Page </h1>
