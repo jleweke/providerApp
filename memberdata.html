@@ -31,20 +31,22 @@
 
     <div id="member-nav" class="collapse navbar-collapse" >
       <ul class="nav navbar-nav">
-        <li id= "profile-link"class="active">
-            <a href= "">My Profile</a></li>
-          <li id="benefits-form-link">
+        <!-- <li id= "profile-link"class="active">
+            <a href= "">My Profile</a></li> -->
+          <li id="benefits-form-link" class="active">
             <a href= "">Eligibility and Benefits</a></li>
           <li id= "filing-link">
-            <a href= "">Filing Information</a></l>
+            <a href= "">Filing Information</a></li>
+          <li id= "logout">
+            <a href="#">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </nav>
   <article id= "member-container">
-    <div class= "member-data" id= "profile">
+    <div class= "member-data" id= "profile" style="display: none;">
       <h1> Profile Page <span id= "user-name"></span> </h1>
     </div>
-    <div class= "member-data panel-body col-lg-12" id= "benefits-form-div" style="display: none;">
+    <div class= "member-data panel-body col-lg-12" id= "benefits-form-div">
       <form id="benefits-form">
           <div class="form-group">
             <label for="patient-birthdate" class= "pull-left">Patient Birthdate</label>
@@ -224,32 +226,12 @@
             </tbody></table>
          </div>
     </div>
-    <div class= "member-data" id= "filing-info" style="display: none;">
+    <div class= "member-data panel-body col-lg-12" id= "filing-info" style="display: none;">
       <h1> Filing Info Page </h1>
 
-      EDI Information
+    <p>TeamCare accepts claims electronically through the NEIC/ENVOY/WebMD network.<p>
 
-TeamCare accepts claims electronically through the NEIC/ENVOY/WebMD network.
-
-Our Payer ID is 36215.
-
-If you do not use WebMD, please check with your vendor. They may route claims to the WebMD network already.
-
-If you do not submit claims electronically and would like to know more, please Click Here.
-
-
-
-TeamCare Dental - Humana Network
-
-Claims submitted for allowed and payable procedures by participating Humana providers through TeamCareDental, are paid at Humana’s Dental Preferred negotiated discounted fee.
-
-Submit Paper Claims to:
-Central States Funds
-P O Box 5116
-Des Plaines, IL 60017-5116  Submit Electronic Claims to:
-Emdeon
-1-800-845-6592
-Central States Payor # 36215
+    <p>Our Payer ID is <b>36215</b>.</p>
   </div>
   </article>
   </center>

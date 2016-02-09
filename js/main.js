@@ -64,26 +64,30 @@ function clickEvents(){
     e.preventDefault();
   });
 
-    $('#profile-link').click(function(e) {
+  $('#profile-link').click(function(e) {
     $(".member-data").fadeOut(100);
     $("#profile").delay(100).fadeIn(100);
     $('#member-nav li').removeClass('active');
     $(this).addClass('active');
+    var stringCurrentUser = localStorage.currentUser
+    var currentUser = JSON.parse(stringCurrentUser)
+    document.getElementById("user-name").innerHTML = currentUser["Username"]
     e.preventDefault();
   });
 
-    // find listener for div, displya current user name
-    // var stringCurrentUser = localStorage.currentUser
-    // var currentUser = JSON.parse(stringCurrentUser)
-    // document.getElementById("user-name").innerHTML = currentUser["Username"]
 
-    $('#filing-link').click(function(e) {
+  $('#filing-link').click(function(e) {
     $(".member-data").fadeOut(100);
     $("#filing-info").delay(100).fadeIn(100);
     $('#member-nav li').removeClass('active');
     $(this).addClass('active');
     e.preventDefault();
   });
+
+$("#logout").click(function(){
+  localStorage.login="false";
+  window.location.href = "index.html";
+});
 }
 
 
@@ -123,18 +127,17 @@ $("#login-form").validate({
                    window.location = 'memberdata.html';
                     console.log(message);
 
-                    // Put the object into storage
+                    // Put the object and login state into storage
                     localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
-                    // Retrieve the object from storage
-                    // var retrievedObject = localStorage.getItem('testObject');
+                    localStorage.login="true";
                   }
 
-                  ////else display value error
+
                   else {
                       alert(message.Error);
-                      window.localStorage.clear()
-                      // console log local storage to make sure its empty
+                      window.localStorage.clear();
+
                   }
                   //window.location = 'memberdata.html';
               },
@@ -244,17 +247,20 @@ $("#benefits-form").validate({
        event.preventDefault(); //stop redirect
 
     if ($("#benefits-form").valid()){
-        console.log("form is valid");
-
+        // Retrieve the current user object from storage (it is a string), parse into object, and convert to JSON format for HTTP "check" call
         var stringCurrentUser = localStorage.currentUser;
         var currentUser = JSON.parse(stringCurrentUser);
 
-        var formData = $("#benefits-form").serializeArray();
+        // Add current user to JSON needed for "check" call
         var formDataJSON = {
           "Username" : currentUser["Username"],
           "Password": currentUser["Password"],
         }
 
+        // generate form data as array
+        var formData = $("#benefits-form").serializeArray();
+
+        //  add form data to JSON
         $(formData).each(function(index, obj){
             formDataJSON[obj.name] = obj.value
           });
@@ -296,7 +302,12 @@ $.each(memberDataJSON["PlanDocuments"], function(index, obj){
 
   if($("#" + displayNameClean).length > 0){
     var url = "https://myteamcare.org/" + obj["RelativePath"]
-    $("#" + displayNameClean).attr("href", url)
+    $("#" + displayNameClean).click(function(e){
+      e.preventDefault();
+          window.open(url, '_blank');
+    });
+      window.open(url, '_blank');
+    // $("#" + displayNameClean).attr("href", url)
   };
 })
 
