@@ -269,20 +269,9 @@ $("#benefits-form").validate({
                   "Content-type": "application/x-www-form-urlencoded",
               },
               success: function (message) {
-
-                  if (message.Success) {
-                    console.log("success" + message);
-                     displayBenefits()
-                    $(".member-data").fadeOut(100);
-                    $("#benefits-result").delay(100).fadeIn(100);
-                  }
-
-                  ////else display value error
-                  else {
-                    console.log("failure")
-                      alert(message.Error);
-                  }
-
+               displayBenefits(message)
+              $(".member-data").fadeOut(100);
+              $("#benefits-result").delay(100).fadeIn(100);
               },
               error: function () { alert("There was an error communicating with the server.  Please try again")}
           });
@@ -293,11 +282,7 @@ $("#benefits-form").validate({
 
 };
 
-function displayBenefits(){
-// eventually will take in a JSON with specific benefits query
-  var memberDataJSON = {"HasMedical":true,"FamilyName":"Daly","PlanCode":"U2        ","PatientName":"Jose Daly","PatientBirthDate":"1955-10-22T00:00:00","RelationToSubscriber":"Member","SubscriberName":"Jose Daly","Hplan":"U2        ","EligibiltyStatus":"Eligible - Medical","TeamCare":"$20.00","Coverage":"Primary","PpoNetwork":"Blue Cross Blue Shield","PreCertNumber":"(800)635-1928","AnnualMedicalIndividualMax":"$100","AnnualMedicalIndividualAccum":"$0.00","AnnualMedicalFamilyMax":"$200","AnnualMedicalFamilyAccum":"$0.00","AnnualMajorMedicalIndividualMax":"$1,000","AnnualMajorMedicalIndividualAccum":"$0.00","AnnualMajorMedicalFamilyMax":"$2,000","AnnualMajorMedicalFamilyAccum":"$0.00",
-"PlanDocuments":[{"DisplayName":"Dental Summary","DocumentType":"DENS","PlanCode":"U2","PlanType":"H","RelativePath":"PDF\\\\HW_Docs\\C6 Dental WEB.pdf","DocumentStatus":"A"},{"DisplayName":"Plan Benefit Profile","DocumentType":"PBP","PlanCode":"U2","PlanType":"H","RelativePath":"PDF\\\\HW_Docs\\PL HW PBP U2.pdf","DocumentStatus":"A"},{"DisplayName":"Last Year's Plan Benefit Profile","DocumentType":"PBPLY","PlanCode":"U2","PlanType":"H","RelativePath":"PDF\\\\PDF_PBP\\PL HW PBP U2.pdf","DocumentStatus":"A"}]}
-
+function displayBenefits(memberDataJSON){
 // Fills in all member health information from member data JSON
 $.each(memberDataJSON, function(key, value){
     if ($("#" + key).length > 0){
