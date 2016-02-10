@@ -6,22 +6,14 @@ var app = {
         registerForm();
         benefitsForm();
         clickEvents();
-        console.log("loaded app intialize")
     },
     // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        console.log("are we getting here?")
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -37,7 +29,7 @@ var app = {
 };
 
 function clickEvents(){
-    $('#login-form-link').click(function(e) {
+  $('#login-form-link').click(function(e) {
     $("#login-form").delay(100).fadeIn(100);
     $("#register-form").fadeOut(100);
     $('#register-form-link').removeClass('active');
@@ -86,15 +78,15 @@ function clickEvents(){
 
 $("#logout").click(function(){
   localStorage.login="false";
+  localStorage.clear();
   window.location.href = "index.html";
 });
 }
 
 
 function loginForm(){
-    //validation rules
-
-$("#login-form").validate({
+  //validation rules
+  $("#login-form").validate({
       rules: {
           "Username": {
               required: true
@@ -229,7 +221,8 @@ $("#register-form").validate({
 };
 
 function benefitsForm(){
-$("#benefits-form").validate({
+  // validation rules
+  $("#benefits-form").validate({
       rules: {
           "Patient Birthdate": {
               required: true
@@ -240,75 +233,69 @@ $("#benefits-form").validate({
           }
       }
   });
-  console.log("before submit")
+
+  //perform an AJAX post to API
   $("#benefits-form").submit(function(event){
-    console.log("on submit");
-      //perform an AJAX post to API
-       event.preventDefault(); //stop redirect
+       event.preventDefault();
 
     if ($("#benefits-form").valid()){
-        // Retrieve the current user object from storage (it is a string), parse into object, and convert to JSON format for HTTP "check" call
+        // Retrieve the current user object from storage and convert to JSON format needed for HTTP "check" call
         var stringCurrentUser = localStorage.currentUser;
         var currentUser = JSON.parse(stringCurrentUser);
-
-        // Add current user to JSON needed for "check" call
         var formDataJSON = {
           "Username" : currentUser["Username"],
           "Password": currentUser["Password"],
         }
 
-        // generate form data as array
+        // Generate benefits form data as array and add to JSON
         var formData = $("#benefits-form").serializeArray();
-
-        //  add form data to JSON
         $(formData).each(function(index, obj){
             formDataJSON[obj.name] = obj.value
           });
 
-          $.ajax({
-              type: "POST",
-              url: "https://myteamcare.org/ics.ashx",
-              // dataType: "json",
-              data: formDataJSON,
-              headers: {
-                  "action": 'check',
-                  "Content-type": "application/x-www-form-urlencoded",
-              },
-              success: function (message) {
-               displayBenefits(message)
-              $(".member-data").fadeOut(100);
-              $("#benefits-result").delay(100).fadeIn(100);
-              },
-              error: function () { alert("There was an error communicating with the server.  Please try again")}
-          });
-          return false; // required to block normal submit since you used ajax
-      }
+      $.ajax({
+          type: "POST",
+          url: "https://myteamcare.org/ics.ashx",,
+          data: formDataJSON,
+          headers: {
+            "action": 'check',
+            "Content-type": "application/x-www-form-urlencoded"
+          },
 
+          success: function (message) {
+             displayBenefits(message)
+            $(".member-data").fadeOut(100);
+            $("#benefits-result").delay(100).fadeIn(100);
+          },
+
+          error: function () { alert("There was an error communicating with the server.  Please try again")}
+      });
+        return false;
+    }
   });
-
 };
 
+// Fills in member health information to DOM
 function displayBenefits(memberDataJSON){
-// Fills in all member health information from member data JSON
-$.each(memberDataJSON, function(key, value){
-    if ($("#" + key).length > 0){
-      $("#" + key).html(value)
-    }
+
+  $.each(memberDataJSON, function(key, value){
+      if ($("#" + key).length > 0){
+        $("#" + key).html(value)
+      }
+    })
+
+  // Add and format PDF links
+  $.each(memberDataJSON["PlanDocuments"], function(index, obj){
+    var displayNameClean =  obj["DisplayName"].replace(/[^\w]/gi, '')
+
+    if($("#" + displayNameClean).length > 0){
+      var url = "https://myteamcare.org/" + obj["RelativePath"]
+      $("#" + displayNameClean).click(function(e){
+        e.preventDefault();
+        window.open(url, '_system', 'location=yes');
+        // window.plugins.childBrowser.showWebPage(encodeURI("'http://docs.google.com/viewer?url=' + pdfLink + '"))
+      });
+      // $("#" + displayNameClean).attr("href", url)
+    };
   })
-
-// Add and format PDF links for Plan Document information
-$.each(memberDataJSON["PlanDocuments"], function(index, obj){
-  var displayNameClean =  obj["DisplayName"].replace(/[^\w]/gi, '')
-
-  if($("#" + displayNameClean).length > 0){
-    var url = "https://myteamcare.org/" + obj["RelativePath"]
-    $("#" + displayNameClean).click(function(e){
-      e.preventDefault();
-      window.open(url, '_system', 'location=yes');
-      // window.plugins.childBrowser.showWebPage(encodeURI("'http://docs.google.com/viewer?url=' + pdfLink + '"))
-    });
-    // $("#" + displayNameClean).attr("href", url)
-  };
-})
-
-}
+};
