@@ -255,7 +255,7 @@ function benefitsForm(){
 
       $.ajax({
           type: "POST",
-          url: "https://myteamcare.org/ics.ashx",,
+          url: "https://myteamcare.org/ics.ashx",
           data: formDataJSON,
           headers: {
             "action": 'check',
@@ -263,12 +263,19 @@ function benefitsForm(){
           },
 
           success: function (message) {
+            if(message["Error"].length > 0){
+              alert(message["Error"])
+            }else{
+            console.log("success message:" + message)
              displayBenefits(message)
             $(".member-data").fadeOut(100);
             $("#benefits-result").delay(100).fadeIn(100);
+            }
           },
 
-          error: function () { alert("There was an error communicating with the server.  Please try again")}
+          error: function (message) {
+           alert("The member record could not be found or there was an error communicating with the server.  Please try again")
+        }
       });
         return false;
     }
