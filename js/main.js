@@ -263,7 +263,7 @@ function benefitsForm(){
           },
 
           success: function (message) {
-            if(message["Error"].length > 0){
+            if(message["Error"]){
               alert(message["Error"])
             }else{
             console.log("success message:" + message)
