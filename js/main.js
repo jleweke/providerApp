@@ -296,11 +296,12 @@ function displayBenefits(memberDataJSON){
     var displayNameClean =  obj["DisplayName"].replace(/[^\w]/gi, '')
 
     if($("#" + displayNameClean).length > 0){
-      var url = "https://myteamcare.org/" + obj["RelativePath"]
+      var url = "http://docs.google.com/viewer?url="+ "https://myteamcare.org/" + obj["RelativePath"]
       $("#" + displayNameClean).click(function(e){
         e.preventDefault();
-        window.open(url, '_system', 'location=yes');
-        // window.plugins.childBrowser.showWebPage(encodeURI("'http://docs.google.com/viewer?url=' + pdfLink + '"))
+        // window.open(url, '_system', 'location=yes');
+      window.open(url, '_blank', 'location=yes');
+      ref = window.open('memberdata.html', '_self');
       });
       // $("#" + displayNameClean).attr("href", url)
     };
