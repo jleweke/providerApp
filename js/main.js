@@ -76,8 +76,6 @@ function clickEvents(){
   });
 
 
-
-
   $('#filing-link').click(function(e) {
     $(".member-data").fadeOut(100);
     $("#filing-info").delay(100).fadeIn(100);
@@ -304,7 +302,12 @@ $.each(memberDataJSON["PlanDocuments"], function(index, obj){
 
   if($("#" + displayNameClean).length > 0){
     var url = "https://myteamcare.org/" + obj["RelativePath"]
-    $("#" + displayNameClean).attr("href", url)
+    $("#" + displayNameClean).click(function(e){
+      e.preventDefault();
+      window.open(url, '_system', 'location=yes');
+      // window.plugins.childBrowser.showWebPage(encodeURI("'http://docs.google.com/viewer?url=' + pdfLink + '"))
+    });
+    // $("#" + displayNameClean).attr("href", url)
   };
 })
 
