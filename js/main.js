@@ -301,7 +301,7 @@ function displayBenefits(memberDataJSON){
         e.preventDefault();
         window.open = cordova.InAppBrowser.open;
         // window.open(url, '_system', 'location=yes');
-      window.open(url, '_blank', 'hidden: no', toolbar=yes', 'EnableViewportScale=yes', 'location=yes');
+      window.open(url, '_blank', 'hidden: no', 'toolbar=yes', 'EnableViewportScale=yes', 'location=yes');
       ref = window.open('memberdata.html', '_self');
       });
       // $("#" + displayNameClean).attr("href", url)
