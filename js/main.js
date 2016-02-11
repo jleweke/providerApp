@@ -296,15 +296,19 @@ function displayBenefits(memberDataJSON){
     var displayNameClean =  obj["DisplayName"].replace(/[^\w]/gi, '')
 
     if($("#" + displayNameClean).length > 0){
-      var url = "http://docs.google.com/viewer?url="+ "https://myteamcare.org/" + obj["RelativePath"]
-      $("#" + displayNameClean).click(function(e){
-        e.preventDefault();
-        // window.open = cordova.InAppBrowser.open;
-        // window.open(url, '_system', 'location=yes');
-      window.open(url, '_blank', 'hidden: no', 'toolbar=yes', 'EnableViewportScale=yes', 'location=yes');
-      // ref = window.open('memberdata.html', '_self');
+        var url = "http://docs.google.com/viewer?url="+ "https://myteamcare.org/" + obj["RelativePath"]
+
+        $("#" + displayNameClean).click(function(e){
+            e.preventDefault();
+
+              window.open(url, '_blank', 'hidden: no', 'toolbar=yes', 'EnableViewportScale=yes', 'location=yes');
+
+       // In iOS all three code snippets below displays the same thing: you can see PDF but its full screen and there no back button. You have to close and restart app to get out.
+              //  window.open(url, '_system', 'location=yes');
+             // $("#" + displayNameClean).attr("href", url)
+            // window.open(url, '_blank', 'hidden: no', 'toolbar=yes', 'EnableViewportScale=yes', 'location=yes');
       });
-      // $("#" + displayNameClean).attr("href", url)
+
     };
   })
 };
