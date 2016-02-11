@@ -14,6 +14,7 @@ var app = {
     // deviceready Event Handler
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -298,17 +299,31 @@ function displayBenefits(memberDataJSON){
     if($("#" + displayNameClean).length > 0){
         var url = "http://docs.google.com/viewer?url="+ "https://myteamcare.org/" + obj["RelativePath"]
 
+      // ON CLICK
         $("#" + displayNameClean).click(function(e){
             e.preventDefault();
+              if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+            //use cordova inAppBrowser
+                  var ref = window.open(url, '_blank', 'hidden: no', 'toolbar=yes', 'EnableViewportScale=yes', 'location=yes');
 
-              window.open(url, '_blank', 'hidden: no', 'toolbar=yes', 'EnableViewportScale=yes', 'location=yes');
-
-       // In iOS all three code snippets below displays the same thing: you can see PDF but its full screen and there no back button. You have to close and restart app to get out.
-              //  window.open(url, '_system', 'location=yes');
-             // $("#" + displayNameClean).attr("href", url)
-            // window.open(url, '_blank', 'hidden: no', 'toolbar=yes', 'EnableViewportScale=yes', 'location=yes');
+                  ref.addEventListener('loadstart', function (event) { alert('start: ' + event.url); }); //starts to load a URL.
+                  ref.addEventListener('loadstop', function (event) { alert('stop: ' + event.url); }); //finishes loading a URL.
+                  ref.addEventListener('loaderror', function (event) { alert('error: ' + event.message); }); //encounters an error when loading a URL.
+                  ref.addEventListener('exit', function (event) { alert(event.type); }); //window is closed.
+                  window.new_window.addEventListener("exit", function () { window.new_window.close(); });
+          } else {
+          //for non mobile device open browser
+                window.open(url);
+          }
       });
 
     };
   })
 };
+
+// PDF NOTES
+
+       // In iOS all three code snippets below displays the same thing: you can see PDF but its full screen and there no back button. You have to close and restart app to get out.
+              //  window.open(url, '_system', 'location=yes');
+             // $("#" + displayNameClean).attr("href", url)
+            // window.open(url, '_blank', 'hidden: no', 'toolbar=yes', 'EnableViewportScale=yes', 'location=yes');
