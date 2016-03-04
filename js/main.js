@@ -317,7 +317,15 @@ function displayBenefits(memberDataJSON){
               window.open(url, '_system');
             }
             else{
-              window.open(url);
+              alert('else branch');
+              try{
+                window.open(url, '_system');
+                alert('ran window open');
+              }
+              catch(err){
+                alert(err);
+              }
+              
             }
             
         });
