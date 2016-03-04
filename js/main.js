@@ -297,7 +297,7 @@ function displayBenefits(memberDataJSON){
     var displayNameClean =  obj["DisplayName"].replace(/[^\w]/gi, '')
 
     if($("#" + displayNameClean).length > 0){
-        var url = "https://myteamcare.org/" + obj["RelativePath"]
+        var url = "https://myteamcare.org/" + obj["RelativePath"];
 
       // ON CLICK
         $("#" + displayNameClean).click(function(e){
@@ -307,6 +307,7 @@ function displayBenefits(memberDataJSON){
             if (navigator.userAgent.toUpperCase() === 'ANDROID') {
               try{
                 navigator.app.loadUrl(url, { openExternal: true });
+                window.open(url, '_system');
               }
               catch(err){
                 alert(err);
