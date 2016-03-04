@@ -299,7 +299,8 @@ function displayBenefits(memberDataJSON){
     if($("#" + displayNameClean).length > 0){
         var url = "https://myteamcare.org" + obj["RelativePath"];
         //relativepath slashes go the wrong way
-        url = url.replace('\\', '/');
+        url = url.replace("\\", "/");
+        alert('slash clean' + url);
       // ON CLICK
         $("#" + displayNameClean).click(function(e){
             e.preventDefault();
@@ -318,10 +319,9 @@ function displayBenefits(memberDataJSON){
               window.open(url, '_system');
             }
             else{
-              alert(url);
               try{
-                navigator.app.loadUrl(url, { openExternal: true });
-                //window.open(url, '_system');
+                //navigator.app.loadUrl(url, { openExternal: true });
+                window.open(url, '_system');
                 //alert('ran window open');
               }
               catch(err){
