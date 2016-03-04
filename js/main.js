@@ -292,13 +292,14 @@ function displayBenefits(memberDataJSON){
       }
     })
 
-  // Add and format PDF links - TODO add external link test for android/ios separately
+  // Add and format PDF links
   $.each(memberDataJSON["PlanDocuments"], function(index, obj){
     var displayNameClean =  obj["DisplayName"].replace(/[^\w]/gi, '')
-
+    
     if($("#" + displayNameClean).length > 0){
-        var url = "https://myteamcare.org/" + obj["RelativePath"];
-
+        var url = "https://myteamcare.org" + obj["RelativePath"];
+        //relativepath slashes go the wrong way
+        url = url.replace('\\', '/');
       // ON CLICK
         $("#" + displayNameClean).click(function(e){
             e.preventDefault();
