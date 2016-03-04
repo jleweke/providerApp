@@ -68,6 +68,7 @@
     </platform>
 
 
+    <access origin="https://myteamcare.org/*" />
     <access origin="http://192.168.0.9:8080/*" />
     <access origin="http://debug.phonegap.com/ " subdomains="true" />
     <access origin= "http://debug2.build.phonegap.com/" subdomains="true" />
