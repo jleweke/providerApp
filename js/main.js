@@ -302,9 +302,15 @@ function displayBenefits(memberDataJSON){
       // ON CLICK
         $("#" + displayNameClean).click(function(e){
             e.preventDefault();
+              alert(navigator.userAgent.toUpperCase());
 
             if (navigator.userAgent.toUpperCase() === 'ANDROID') {
-              navigator.app.loadUrl(url, { openExternal: true });
+              try{
+                navigator.app.loadUrl(url, { openExternal: true });
+              }
+              catch(err){
+                alert(err);
+              }
             }
             else if (navigator.userAgent.toUpperCase() === 'IOS') {
               window.open(url, '_system');
