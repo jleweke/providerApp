@@ -292,7 +292,7 @@ function displayBenefits(memberDataJSON){
       }
     })
 
-  // Add and format PDF links
+  // Add and format PDF links - TODO add external link test for android/ios separately
   $.each(memberDataJSON["PlanDocuments"], function(index, obj){
     var displayNameClean =  obj["DisplayName"].replace(/[^\w]/gi, '')
 
