@@ -302,23 +302,21 @@ function displayBenefits(memberDataJSON){
       // ON CLICK
         $("#" + displayNameClean).click(function(e){
             e.preventDefault();
-              if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-            //use cordova inAppBrowser
-                  var ref = window.open(url, '_blank', 'hidden: no', 'toolbar=yes', 'EnableViewportScale=yes', 'location=yes');
 
-                  ref.addEventListener('loadstart', function (event) { alert('start: ' + event.url); }); //starts to load a URL.
-                  ref.addEventListener('loadstop', function (event) { alert('stop: ' + event.url); }); //finishes loading a URL.
-                  ref.addEventListener('loaderror', function (event) { alert('error: ' + event.message); }); //encounters an error when loading a URL.
-                  ref.addEventListener('exit', function (event) { alert(event.type); }); //window is closed.
-                  window.new_window.addEventListener("exit", function () { window.new_window.close(); });
-          } else {
-          //for non mobile device open browser
-                window.open(url);
-          }
-      });
+            if (navigator.userAgent.toUpperCase() === 'ANDROID') {
+              navigator.app.loadUrl(url, { openExternal: true });
+            }
+            else if (navigator.userAgent.toUpperCase() === 'IOS') {
+              window.open(url, '_system');
+            }
+            else{
+              window.open(url);
+            }
+            
+        });
 
-    };
-  })
+    }
+  });
 };
 
 // PDF NOTES
