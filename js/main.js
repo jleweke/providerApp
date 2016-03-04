@@ -297,7 +297,7 @@ function displayBenefits(memberDataJSON){
     var displayNameClean =  obj["DisplayName"].replace(/[^\w]/gi, '')
 
     if($("#" + displayNameClean).length > 0){
-        var url = "http://docs.google.com/viewer?url="+ "https://myteamcare.org/" + obj["RelativePath"]
+        var url = "https://myteamcare.org/" + obj["RelativePath"]
 
       // ON CLICK
         $("#" + displayNameClean).click(function(e){
