@@ -317,10 +317,11 @@ function displayBenefits(memberDataJSON){
               window.open(url, '_system');
             }
             else{
-              alert('else branch');
+              alert(url);
               try{
-                window.open(url, '_system');
-                alert('ran window open');
+                navigator.app.loadUrl(url, { openExternal: true });
+                //window.open(url, '_system');
+                //alert('ran window open');
               }
               catch(err){
                 alert(err);
