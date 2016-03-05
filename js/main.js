@@ -286,6 +286,7 @@ function benefitsForm(){
 // Fills in member health information to DOM
 function displayBenefits(memberDataJSON){
 
+//console.log(JSON.stringify(memberDataJSON));
   $.each(memberDataJSON, function(key, value){
       if ($("#" + key).length > 0){
         $("#" + key).html(value)
@@ -297,14 +298,16 @@ function displayBenefits(memberDataJSON){
     var displayNameClean =  obj["DisplayName"].replace(/[^\w]/gi, '')
     
     if($("#" + displayNameClean).length > 0){
-        var url = "https://myteamcare.org" + obj["RelativePath"];
+      //alert(obj["RelativePath"]);
+        //var relpath = obj["RelativePath"].replace("\\", "/");
+        var relpath = "PDF/HW_Docs/C6 Dental WEB.pdf";
+        var url = "https://myteamcare.org/" + relpath;
         //relativepath slashes go the wrong way
-        url = url.replace("\\", "/");
-        alert('slash clean' + url);
+        //alert('slash clean' + url);
       // ON CLICK
         $("#" + displayNameClean).click(function(e){
             e.preventDefault();
-              alert(navigator.userAgent.toUpperCase());
+              //alert(navigator.userAgent.toUpperCase());
 
             if (navigator.userAgent.toUpperCase() === 'ANDROID') {
               try{
