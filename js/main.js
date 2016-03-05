@@ -308,7 +308,7 @@ function displayBenefits(memberDataJSON){
         $("#" + displayNameClean).click(function(e){
             e.preventDefault();
               //alert(navigator.userAgent.toUpperCase());
-
+            alert(url);
             if (navigator.userAgent.toUpperCase() === 'ANDROID') {
               try{
                 navigator.app.loadUrl(url, { openExternal: true });
