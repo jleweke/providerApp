@@ -286,57 +286,39 @@ function benefitsForm(){
 // Fills in member health information to DOM
 function displayBenefits(memberDataJSON){
 
-//console.log(JSON.stringify(memberDataJSON));
   $.each(memberDataJSON, function(key, value){
       if ($("#" + key).length > 0){
         $("#" + key).html(value)
       }
     })
 
-  // Add and format PDF links
+  // Add and format PDF links - TODO add external link test for android/ios separately
   $.each(memberDataJSON["PlanDocuments"], function(index, obj){
     var displayNameClean =  obj["DisplayName"].replace(/[^\w]/gi, '')
-    
+
     if($("#" + displayNameClean).length > 0){
-      //alert(obj["RelativePath"]);
-        //var relpath = obj["RelativePath"].replace("\\", "/");
-        var relpath = "PDF/HW_Docs/C6 Dental WEB.pdf";
-        var url = "https://myteamcare.org/" + relpath;
-        //relativepath slashes go the wrong way
-        //alert('slash clean' + url);
+        var url = "http://docs.google.com/viewer?url="+ "https://myteamcare.org/" + obj["RelativePath"]
+
       // ON CLICK
         $("#" + displayNameClean).click(function(e){
             e.preventDefault();
-              //alert(navigator.userAgent.toUpperCase());
-            alert(url);
-            if (navigator.userAgent.toUpperCase() === 'ANDROID') {
-              try{
-                navigator.app.loadUrl(url, { openExternal: true });
-                window.open(url, '_system');
-              }
-              catch(err){
-                alert(err);
-              }
-            }
-            else if (navigator.userAgent.toUpperCase() === 'IOS') {
-              window.open(url, '_system');
-            }
-            else{
-              try{
-                //navigator.app.loadUrl(url, { openExternal: true });
-                window.open(url, '_system');
-                //alert('ran window open');
-              }
-              catch(err){
-                alert(err);
-              }
-              
-            }
-            
-        });
+              if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+            //use cordova inAppBrowser
+                  var ref = window.open(url, '_blank', 'hidden: no', 'toolbar=yes', 'EnableViewportScale=yes', 'location=yes');
 
-    }
-  });
+                  ref.addEventListener('loadstart', function (event) { alert('start: ' + event.url); }); //starts to load a URL.
+                  ref.addEventListener('loadstop', function (event) { alert('stop: ' + event.url); }); //finishes loading a URL.
+                  ref.addEventListener('loaderror', function (event) { alert('error: ' + event.message); }); //encounters an error when loading a URL.
+                  ref.addEventListener('exit', function (event) { alert(event.type); }); //window is closed.
+                  window.new_window.addEventListener("exit", function () { window.new_window.close(); });
+          } else {
+          //for non mobile device open browser
+                window.open(url);
+          }
+      });
+
+    };
+  })
 };
 
 // PDF NOTES
