@@ -48,6 +48,7 @@ function clickEvents(){
 
 
   $('#benefits-form-link').click(function(e) {
+    $("#member-nav").removeClass("in"); //added 3/26 to collapse the menu after click
     $(".member-data").fadeOut(100);
     $("#benefits-form-div").delay(100).fadeIn(100);
     $('#member-nav li').removeClass('active');
@@ -70,6 +71,7 @@ function clickEvents(){
 
 
   $('#filing-link').click(function(e) {
+    $("#member-nav").removeClass("in"); //added 3/26 to collapse the menu after click
     $(".member-data").fadeOut(100);
     $("#filing-info").delay(100).fadeIn(100);
     $('#member-nav li').removeClass('active');
@@ -288,7 +290,11 @@ function displayBenefits(memberDataJSON){
 
   $.each(memberDataJSON, function(key, value){
       if ($("#" + key).length > 0){
-        $("#" + key).html(value)
+        if (key=='PatientBirthDate'){
+          //crop out the long date format - this is a hack and should be fixed server side on the db query result- javascript has no good date formatting options without adding modules
+          value = value.substring(0, 10);
+        }
+        $("#" + key).html(value);
       }
     })
 
