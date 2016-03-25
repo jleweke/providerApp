@@ -6,14 +6,31 @@ var app = {
         registerForm();
         benefitsForm();
         clickEvents();
+        
     },
     // Bind Event Listeners
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        window.addEventListener('popstate', this.onPopState);
     },
     // deviceready Event Handler
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+
+    },
+    onPopState: function(e) {
+      console.log("popped state: " + e.name);
+      // e.state is equal to the data-attribute of the last image we clicked
+      //console.log(e.state);
+      if(e.state) {
+        $("#member-container").html(e.state);
+        //need to rebind events and handlers after reloading html
+        clickEvents();
+        benefitsForm();
+      }
+      else {
+        console.log("ERROR: popstate received but nothing stored in e.state ")
+      }
 
     },
     // Update DOM on a Received Event
@@ -28,6 +45,11 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
+function addHistory(name){
+  console.log('pushed state: ' + name);
+  history.pushState($("#member-container").html(), name, null);
+}
 
 function clickEvents(){
   $('#login-form-link').click(function(e) {
@@ -50,22 +72,27 @@ function clickEvents(){
   $('#benefits-form-link').click(function(e) {
     $("#member-nav").removeClass("in"); //added 3/26 to collapse the menu after click
     $(".member-data").fadeOut(100);
-    $("#benefits-form-div").delay(100).fadeIn(100);
     $('#member-nav li').removeClass('active');
     $(this).addClass('active');
       benefitsForm();
       "clicked on benefits form"
+    $("#benefits-form-div").delay(100).fadeIn(100, function(){
+      addHistory('Search Form');
+    });
+
     e.preventDefault();
   });
 
   $('#profile-link').click(function(e) {
     $(".member-data").fadeOut(100);
-    $("#profile").delay(100).fadeIn(100);
     $('#member-nav li').removeClass('active');
     $(this).addClass('active');
-    var stringCurrentUser = localStorage.currentUser
-    var currentUser = JSON.parse(stringCurrentUser)
-    document.getElementById("user-name").innerHTML = currentUser["Username"]
+    var stringCurrentUser = localStorage.currentUser;
+    var currentUser = JSON.parse(stringCurrentUser);
+    document.getElementById("user-name").innerHTML = currentUser["Username"];
+    $("#profile").delay(100).fadeIn(100, function(){
+      addHistory('User Profile');
+    });
     e.preventDefault();
   });
 
@@ -73,9 +100,11 @@ function clickEvents(){
   $('#filing-link').click(function(e) {
     $("#member-nav").removeClass("in"); //added 3/26 to collapse the menu after click
     $(".member-data").fadeOut(100);
-    $("#filing-info").delay(100).fadeIn(100);
     $('#member-nav li').removeClass('active');
     $(this).addClass('active');
+    $("#filing-info").delay(100).fadeIn(100, function(){
+      addHistory('Filing Info');
+    });
     e.preventDefault();
   });
 
@@ -120,7 +149,7 @@ function loginForm(){
 
                   if (message.Success) {
                    window.location = 'memberdata.html';
-                    console.log(message);
+                    //console.log(message);
 
                     // Put the object and login state into storage
                     localStorage.setItem('currentUser', JSON.stringify(currentUser));
@@ -212,8 +241,9 @@ $("#register-form").validate({
                   "Content-type": "application/x-www-form-urlencoded",
               },
               success: function (data) {
-                  console.log(data);
+                  //console.log(data);
                   alert("Registration successful. Check email for next steps");
+
                   window.location = 'memberdata.html';
               },
               error: function () { alert("There was an error") }
@@ -239,13 +269,15 @@ function benefitsForm(){
 
   //perform an AJAX post to API
   $("#benefits-form").submit(function(event){
-       event.preventDefault();
-
+    addHistory('Search Form with Values');
+    event.preventDefault();
+    console.log('search submitted');
     if ($("#benefits-form").valid()){
         // Retrieve the current user object from storage and convert to JSON format needed for HTTP "check" call
         var stringCurrentUser = localStorage.currentUser;
         var currentUser = JSON.parse(stringCurrentUser);
-        var formDataJSON = {
+        var formDataJSON = {}; //reset
+        formDataJSON = {
           "Username" : currentUser["Username"],
           "Password": currentUser["Password"],
         }
@@ -254,6 +286,8 @@ function benefitsForm(){
         var formData = $("#benefits-form").serializeArray();
         $(formData).each(function(index, obj){
             formDataJSON[obj.name] = obj.value
+            console.log('formdatajson: ' + obj.name);
+
           });
 
       $.ajax({
@@ -269,10 +303,14 @@ function benefitsForm(){
             if(message["Error"]){
               alert(message["Error"])
             }else{
-            console.log("success message:" + message)
-             displayBenefits(message)
-            $(".member-data").fadeOut(100);
-            $("#benefits-result").delay(100).fadeIn(100);
+              //console.log("success message:" + message);
+               displayBenefits(message);
+              $(".member-data").fadeOut(100);
+  
+              //location.hash = "searchresults";
+              $("#benefits-result").delay(100).fadeIn(100, function(){
+                addHistory('Benefits');
+              });
             }
           },
 

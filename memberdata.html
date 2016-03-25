@@ -3,8 +3,8 @@
 <head>
     <title>Provider Welcome</title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.form.js"></script>
     <script src="js/jquery-validate.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/main.js"></script>
@@ -40,10 +40,6 @@
   </nav>
 
   <article id= "member-container">
-<!-- PROFILE PAGE -->
-    <div class= "member-data" id= "profile" style="display: none;">
-        <h1> Profile Page <span id= "user-name"></span> </h1>
-    </div>
 <!-- BENEFITS SEARCH FORM -->
     <div class= "member-data panel-body col-lg-12" id= "benefits-form-div">
       <form id="benefits-form">
@@ -231,6 +227,9 @@
   </div>
   </article>
   </center>
-   <script type="text/javascript"> app.initialize(); </script>
+   <script type="text/javascript"> 
+   app.initialize(); 
+   addHistory('Inital Load');
+   </script>
 </body>
 </html>

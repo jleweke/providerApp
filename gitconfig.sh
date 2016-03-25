@@ -8,5 +8,5 @@ git add memberdata.html
 git add register.html
 git add spec.html
 git add gitconfig.sh
-git commit -m "quick hit change requests completed"
+git commit -m "initial version with back button working"
 git push origin master
