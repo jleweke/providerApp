@@ -8,5 +8,5 @@ git add memberdata.html
 git add register.html
 git add spec.html
 git add gitconfig.sh
-git commit -m "initial version with back button working"
+git commit -m "back button history removed as history is popped"
 git push origin master

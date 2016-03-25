@@ -27,8 +27,10 @@ var app = {
         //need to rebind events and handlers after reloading html
         clickEvents();
         benefitsForm();
+        history.replaceState(null, null, null); //remove history as you back over it?
       }
       else {
+        history.replaceState(null, null, null); //remove history as you back over it?
         console.log("ERROR: popstate received but nothing stored in e.state ")
       }
 
