@@ -19,7 +19,8 @@ var app = {
 
     },
     onPopState: function(e) {
-      console.log("popped state: " + e.name);
+      //handles what to do when the back button is pressed
+      //console.log("popped state: " + e.name);
       // e.state is equal to the data-attribute of the last image we clicked
       //console.log(e.state);
       if(e.state) {
@@ -49,7 +50,7 @@ var app = {
 };
 
 function addHistory(name){
-  console.log('pushed state: ' + name);
+  //console.log('pushed state: ' + name);
   history.pushState($("#member-container").html(), name, null);
 }
 
