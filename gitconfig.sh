@@ -8,5 +8,6 @@ git add memberdata.html
 git add register.html
 git add spec.html
 git add gitconfig.sh
-git commit -m "turned off history console logging"
+git add res/icon
+git commit -m "added hdpi android icon"
 git push origin master
