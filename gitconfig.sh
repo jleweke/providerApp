@@ -9,5 +9,5 @@ git add register.html
 git add spec.html
 git add gitconfig.sh
 git add res/icon
-git commit -m "added hdpi android icon"
+git commit -m "added remaining android icons"
 git push origin master
